@@ -1,0 +1,1 @@
+This repository contains the python codes for "A High-Order Integrator for the Schrödinger Equation with Time-Dependent, Homogeneous Magnetic Field" by V. Gradinaru and O. Rietmann.
