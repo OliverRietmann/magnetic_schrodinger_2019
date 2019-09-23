@@ -1,0 +1,6 @@
+*.pdf
+*.eps
+*.png
+*.pyc
+__pycache__/
+plots/
