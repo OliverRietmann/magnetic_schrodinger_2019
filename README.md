@@ -2,8 +2,8 @@ This repository contains the python codes for "A High-Order Integrator for the S
 
 **Running the examples**
 
-Open a terminal in the top folder of the repository and run
+To reproduce the figures of the work above, open a terminal and run
 
-`python3 <example.py> path/to/output/folder/`
+`python3 <example.py> <~/path/to/output/directory/>`
 
-where <example.py> is replaced by one of the scripts, e.g. harmonic.py
+where `<example.py>` is replaced by one of the scripts, e.g. harmonic.py, and `<~/path/to/output/directory/>` is an existing directory where the figures are to be stored.
