@@ -10,9 +10,6 @@ output_folder = str(argv[1])
 # Time ==================================
 tspan = [0., 2 * np.pi]
 color = ['g','r', 'm']
-# Use commented lists to get the plots for the lower order splittings
-steps = [ 2**i for i in range(5,9) ] # [ 2**i for i in range(4,8) ]
-split = ['SS', 'PRKS6', 'Y61'] # ['SS', 'PRKS6', 'Y61']
 
 # Spacial and Momentum Grid =============
 g = Grid(3, 2**7, 8 * np.pi)
@@ -40,6 +37,14 @@ sim.print()
 # Reference solution
 reference = sim.run(tspan, 2**8, 'KL8')
 
-# Plot convergence
+# Low order splittings
+steps = [ 2**i for i in range(5,9) ]
+split = ['SS', 'PRKS6', 'Y61']
 err, h = sim.run_convergence(reference, tspan, steps, split)
-Simulation.plot_convergence(h, err, split, color, output_folder + 'convergence.pdf', bbox_inches='tight')
+Simulation.plot_convergence(h, err, split, color, output_folder + 'convergence_mexican_low.pdf', bbox_inches='tight')
+
+# High order splittings
+steps = [ 2**i for i in range(4,8) ]
+split = ['BM42', 'KL6', 'KL8']
+err, h = sim.run_convergence(reference, tspan, steps, split)
+Simulation.plot_convergence(h, err, split, color, output_folder + 'convergence_mexican_high.pdf', bbox_inches='tight')

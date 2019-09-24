@@ -9,9 +9,6 @@ output_folder = str(argv[1])
 # Time ==================================
 tspan = [0., 2*np.pi]
 color = ['g','r','m']
-# Use commented lists to get the plots for the lower order splittings
-steps = [ 2**i for i in range(4,8) ] # [ 2**i for i in range(5,9) ]
-split = ['BM42', 'KL6', 'KL8']       # ['SS', 'PRKS6', 'Y61']
 
 # Spacial and Momentum Grid =============
 g = Grid(3, 2**7, 8*np.pi)
@@ -34,6 +31,16 @@ sim = Simulation(g, psi0, Magnus_CF4, B, Flow, args=(V))
 sim.print()
 
 # By periodicity, initial data serves as reference.
-reference = Solution(sim.psi0(sim.X), tspan, g, steps[-1])
+reference = Solution(sim.psi0(sim.X), tspan, g, 2**10)
+
+# Low order splittings
+steps = [ 2**i for i in range(5,9) ]
+split = ['SS', 'PRKS6', 'Y61']
 err, h = sim.run_convergence(reference, tspan, steps, split)
-Simulation.plot_convergence(h, err, split, color, output_folder + "convergence.pdf", bbox_inches='tight')
+Simulation.plot_convergence(h, err, split, color, output_folder + "convergence_harmonic_low.pdf", bbox_inches='tight')
+
+# High order splittings
+steps = [ 2**i for i in range(4,8) ]
+split = ['BM42', 'KL6', 'KL8']
+err, h = sim.run_convergence(reference, tspan, steps, split)
+Simulation.plot_convergence(h, err, split, color, output_folder + "convergence_harmonic_high.pdf", bbox_inches='tight')
